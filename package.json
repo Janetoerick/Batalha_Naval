@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@txtextcontrol/tx-websocket-server": "^30.0.2",
+    "express": "^4.18.1"
+  },
+  "name": "batalha-naval",
+  "version": "1.0.0",
+  "description": "jogo batalha naval",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
