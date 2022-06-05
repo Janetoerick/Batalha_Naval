@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <title>WS Client</title>
+
+    <!-- Estilos para os elementos do HTML -->
+    <style>
+        .total {
+            width: 100%;
+            height: 100%;
+            top:0;
+	        left:0;
+            position:absolute;
+            background-color: lightblue;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            background-color: whitesmoke;
+            width: 300px;
+            border-radius: 0.9em;
+        }
+        .title{
+            text-align: center;
+        }
+        .list_options {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .button_option { 
+            width: 200px;
+            border-radius: 0.9em;
+            padding: 9px;
+            border: 2px solid;
+            margin-bottom: 10px;
+            border: 5px solid #3498db; 
+            color: #000000; 
+        }
+        .button_option:hover {
+	        background-color: #3498db;
+	        border: 5px solid #3498db;
+	        color: #ecf0f1;
+	        cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="total">
+        <div class="container">
+            <div class="title">
+                <h2>Batalha Naval</h2>
+            </div>
+            <hr>
+            <div class="list_options">
+                <button class="button_option">Criar nova sala</button>
+                <button class="button_option">Entrar em sala existente</button>
+                <button class="button_option">Jogar contra PC</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
