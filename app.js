@@ -18,7 +18,8 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.redirect('/index.html');
+    res.redirect('/cliente.html');
+    //res.redirect('/index.html');
 });
 
 app.post('/login', (req, res, next) => {
