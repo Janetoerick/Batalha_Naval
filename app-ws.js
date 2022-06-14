@@ -13,7 +13,7 @@ const boat_free = 3;
 
 let clients = [];
 
-let games = []
+const games_map = new Map();
 
 let game = {
     id: null,
@@ -41,7 +41,6 @@ function onMessage(ws, data) {
         type: 'confirmation',
         data: 'Recebido'
     }));
-    
 
     if (json.type == "newGame") { // criando novo jogo
         var g = JSON.parse(JSON.stringify(game));
@@ -52,8 +51,8 @@ function onMessage(ws, data) {
         for (let i = 0; i < 10; i++) {
             g.player1.map_enemy.push(new Array(10).fill(0));
         }
-        games.push(g);
-        g.id = games.length;
+        games_map.set(games_map.size+1,g);
+        g.id = games_map.size;
         console.log(g.player1.name);
         ws.send(JSON.stringify({
             type: 'newGameCreated',
@@ -61,7 +60,7 @@ function onMessage(ws, data) {
             idGame: g.player1.name
         }));
     } else if (json.type == "introGame") { // entrando num jogo existente
-        for (game in games) {
+        games_map.forEach(()=>{
             if (json.idGame == game.id) { // achar o jogo
                 if (json.name != game.player1.name) { // se o nome do jogador 2 for diferente do 1
                     game.player2 = JSON.parse(JSON.stringify(player));
@@ -82,11 +81,11 @@ function onMessage(ws, data) {
                         idGame: game.id
                     }));
                 }
-                break;
+                return;
             }
-        }
+        })
     } else if (json.type == "setMap") { // confirmando que esta pronto para jogar
-        for (game in games) {
+        games_map.forEach(()=>{
             if (json.idGame == game.id) {
                 if (json.name == game.player1.name) {
                     game.player1.map_player = json.map_player;
@@ -100,11 +99,11 @@ function onMessage(ws, data) {
                     idGame: game.id,
                     status: game.player2.ready && game.player1.ready
                 }));
-                break;
+                return;
             }
-        }
+        })
     } else if (json.type == "attack") { // comando de ataque
-        for (game in games) {
+        games_map.forEach(()=>{
             if (json.idGame == game.id) {
                 if(json.name == game.player1.name){
                     if (game.player2.map_player[json.row][json.column] == boat_free) {
@@ -143,9 +142,9 @@ function onMessage(ws, data) {
                         }));
                     }
                 }
-                break;
+                return;
             }
-        }
+        })
     }
 }
 
