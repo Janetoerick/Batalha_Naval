@@ -46,6 +46,9 @@ window.addEventListener('load', (e) => {
     username = document.getElementById('username');
 
     const matriz = document.getElementById("matriz");
+    
+    var elemento = document.createElement("div");
+    elemento.setAttribute("class", "node");
 
-    matriz.appendChild(document.createElement("DIV").className("node"));
+    matriz.appendChild(elemento);
 });
