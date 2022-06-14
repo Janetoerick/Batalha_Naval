@@ -44,27 +44,32 @@ function onMessage(ws, data) {
     
 
     if (json.type == "newGame") { // criando novo jogo
-        g = new game;
-        g.id = games.length;
+        var g = JSON.parse(JSON.stringify(game));
+        g.player1 = JSON.parse(JSON.stringify(player));
         g.player1.name = json.name;
-        g.player1.ws_player = ws;
         g.player1.map_player = json.map_player;
-        g.player1.map_enemy = new Array(10);
+        g.player1.map_enemy = new Array();
         for (let i = 0; i < 10; i++) {
-            g.player1.map_enemy[i] = new Array(10);
+            g.player1.map_enemy.push(new Array(10).fill(0));
         }
         games.push(g);
+        g.id = games.length;
+        console.log(g.player1.name);
         ws.send(JSON.stringify({
             type: 'newGameCreated',
-            data: 'Jogo criado'
+            data: 'Jogo criado',
+            idGame: g.player1.name
         }));
     } else if (json.type == "introGame") { // entrando num jogo existente
         for (game in games) {
             if (json.idGame == game.id) { // achar o jogo
                 if (json.name != game.player1.name) { // se o nome do jogador 2 for diferente do 1
-                    game.player2 = new player;
+                    game.player2 = JSON.parse(JSON.stringify(player));
                     game.player2.name = json.name;
-                    game.ws_player = ws;
+                    game.player2.map_enemy = new Array();
+                    for (let i = 0; i < 10; i++) {
+                        game.player2.map_enemy.push(new Array(10).fill(0));
+                    }
                     ws.send(JSON.stringify({
                         type: 'ConnectionType',
                         status: 'OK',

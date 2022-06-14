@@ -14,35 +14,33 @@
         left: 0;
         right: 0;
     }
-    #map_player{
+    #matriz{
+        display: flex;
         background-color: red;
         width: 500px;
         height: 500px;
-        
     }
-    #board_player{
-
-    }
-    #map_enemy{
-
+    .node{
+        background-color: blue;
+        width: 10px;
+        height: 10px;
     }
     </style>
+
+    <script src="cliente.js">
+
+    </script>
+
 </head>
 <body>
     <div class="container">
-        <div class="field_player">
-            <div id="map_player">
+        <input id="username">
+        <button onClick="send()" >
+            Criar
+        </button>
+    </div>
+    <div id="matriz"> 
 
-            </div>
-            <div id="board_player">
-    
-            </div>
-        </div>
-        <div class="field_enemy">
-            <div id="map_enemy">
-
-            </div>
-        </div>
     </div>
 </body>
 </html>
